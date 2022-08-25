@@ -6,12 +6,13 @@ import { toast } from "react-toastify";
 import { useState } from "react";
 import { resetPassword } from "../../services/authService";
 
+const initialState = {
+  password: "",
+  password2: "",
+};
 const Reset = () => {
   const { resetToken } = useParams();
-  const [formData, setFormData] = useState({
-    password: "",
-    password2: "",
-  });
+  const [formData, setFormData] = useState(initialState);
   const { password, password2 } = formData;
 
   const handleInputChange = (e) => {
@@ -33,6 +34,9 @@ const Reset = () => {
     // console.log(resetToken);
     // console.log(userData);
     await resetPassword(userData, resetToken);
+    setFormData({
+      ...initialState,
+    });
   };
 
   return (
@@ -67,10 +71,10 @@ const Reset = () => {
             </button>
             <div className={styles.links}>
               <p>
-                <Link to="/login">- Login</Link>
+                <Link to="/">- Home</Link>
               </p>
               <p>
-                <Link to="/register">- Register</Link>
+                <Link to="/login">- Login</Link>
               </p>
             </div>
           </form>

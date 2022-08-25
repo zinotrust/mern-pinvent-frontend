@@ -23,6 +23,7 @@ const Forgot = () => {
     };
 
     await forgotPassword(userData);
+    setEmail("");
   };
   return (
     <section className={`container ${styles.auth}`}>
@@ -48,10 +49,10 @@ const Forgot = () => {
             </button>
             <div className={styles.links}>
               <p>
-                <Link to="/login">- Login</Link>
+                <Link to="/">- Home</Link>
               </p>
               <p>
-                <Link to="/register">- Register</Link>
+                <Link to="/login">- Login</Link>
               </p>
             </div>
           </form>

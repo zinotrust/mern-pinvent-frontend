@@ -430,14 +430,18 @@ p {
   border-radius: 50%;
 }
 
-/* a {
+a {
   font-size: 1.4rem;
-  color: var(--dark-blue);
+  /* color: var(--dark-blue); */
   text-decoration: none;
   transition: all 0.2s;
 }
 
+ul {
+  list-style: none;
+}
+
 a:hover {
-  color: var(--color-dark);
+  /* color: var(--color-dark); */
   font-size: 1.5rem;
-} */
+}

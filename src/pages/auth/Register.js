@@ -6,13 +6,15 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { registerUser, validateEmail } from "../../services/authService";
 
+const initialState = {
+  name: "",
+  email: "",
+  password: "",
+  password2: "",
+};
+
 const Register = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    password2: "",
-  });
+  const [formData, setFormData] = useState(initialState);
   const { name, email, password, password2 } = formData;
 
   const handleInputChange = (e) => {
@@ -40,7 +42,11 @@ const Register = () => {
       email,
       password,
     };
+    console.log(userData);
     await registerUser(userData);
+    setFormData({
+      ...initialState,
+    });
   };
 
   return (
@@ -91,7 +97,8 @@ const Register = () => {
           </form>
 
           <span className={styles.register}>
-            <p>Already an account? &nbsp;</p>
+            <Link to="/"> Home </Link>
+            <p>&nbsp; Already an account? &nbsp;</p>
             <Link to="/login">Login</Link>
           </span>
         </div>

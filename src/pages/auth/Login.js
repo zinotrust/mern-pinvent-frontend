@@ -6,11 +6,13 @@ import Card from "../../components/card/Card";
 import { toast } from "react-toastify";
 import { loginUser, validateEmail } from "../../services/authService";
 
+const initialState = {
+  email: "",
+  password: "",
+};
+
 const Login = () => {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+  const [formData, setFormData] = useState(initialState);
   const { email, password } = formData;
 
   const handleInputChange = (e) => {
@@ -33,7 +35,11 @@ const Login = () => {
       email,
       password,
     };
+    console.log(userData);
     await loginUser(userData);
+    setFormData({
+      ...initialState,
+    });
   };
   return (
     <section className={`container ${styles.auth}`}>
@@ -68,7 +74,8 @@ const Login = () => {
           <Link to="/forgot">Forgot Password</Link>
 
           <span className={styles.register}>
-            <p>Don't have an account? &nbsp;</p>
+            <Link to="/">Home</Link>
+            <p>&nbsp;Don't have an account? &nbsp;</p>
             <Link to="/register">Register</Link>
           </span>
         </div>
