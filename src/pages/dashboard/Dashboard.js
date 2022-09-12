@@ -1,9 +1,38 @@
-import React from "react";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import ProductList from "../../components/product/productList/ProductList";
+import { getProducts, RESET } from "../../redux/features/product/productSlice";
+import { selectIsLoggedIn } from "../../redux/features/auth/authSlice";
+import ProductSummary from "../../components/product/productSummary/ProductSummary";
+import useRedirectLoggedOutUser from "../../customHook/useRedirectLoggedOutUser";
 
 const Dashboard = () => {
+  useRedirectLoggedOutUser("/login");
+  const dispatch = useDispatch();
+
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const { products, isLoading, isError, message } = useSelector(
+    (state) => state.product
+  );
+
+  useEffect(() => {
+    if (isError) {
+      console.log(message);
+    }
+
+    if (isLoggedIn === true) {
+      dispatch(getProducts());
+    }
+
+    return () => {
+      dispatch(RESET());
+    };
+  }, [isLoggedIn, isError, message, dispatch]);
+
   return (
     <div>
-      <h1>Dashboard</h1>
+      <ProductSummary products={products} />
+      <ProductList products={products} isLoading={isLoading} />
     </div>
   );
 };

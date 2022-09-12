@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import styles from "./auth.module.scss";
 import { BiLogIn } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Card from "../../components/card/Card";
 import { toast } from "react-toastify";
 import { loginUser, validateEmail } from "../../services/authService";
+import { useDispatch } from "react-redux";
+import { SET_NAME, SET_LOGIN } from "../../redux/features/auth/authSlice";
+import Loader from "../../components/Loader/Loader";
 
 const initialState = {
   email: "",
@@ -12,8 +15,12 @@ const initialState = {
 };
 
 const Login = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState(initialState);
   const { email, password } = formData;
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -22,6 +29,7 @@ const Login = () => {
 
   const login = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     // Validation
     if (!email || !password) {
       return toast.error("All fields are required");
@@ -35,14 +43,20 @@ const Login = () => {
       email,
       password,
     };
-    console.log(userData);
-    await loginUser(userData);
+    // console.log(userData);
+    const data = await loginUser(userData);
+    // console.log(data);
     setFormData({
       ...initialState,
     });
+    dispatch(SET_LOGIN(true));
+    dispatch(SET_NAME(data.name));
+    navigate("/dashboard");
+    setIsLoading(false);
   };
   return (
     <section className={`container ${styles.auth}`}>
+      {isLoading && <Loader />}
       <Card>
         <div className={styles.form}>
           <div className="--flex-center">

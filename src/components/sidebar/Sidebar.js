@@ -3,18 +3,29 @@ import SidebarItem from "./SidebarItem";
 import "./Sidebar.scss";
 import { HiMenuAlt3 } from "react-icons/hi";
 import menu from "../../data/sidebar";
+import { RiProductHuntLine } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = ({ children }) => {
   const [isOpen, setIsOpen] = useState(true);
   const toggle = () => setIsOpen(!isOpen);
+  const navigate = useNavigate();
+
+  const goHome = () => {
+    navigate("/");
+  };
 
   return (
     <div className="layout">
       <div style={{ width: isOpen ? "230px" : "60px" }} className="sidebar">
         <div className="top_section">
-          <h1 style={{ display: isOpen ? "block" : "none" }} className="logo">
-            CHQ
-          </h1>
+          <div style={{ display: isOpen ? "block" : "none" }} className="logo">
+            <RiProductHuntLine
+              size={35}
+              onClick={goHome}
+              style={{ cursor: "pointer" }}
+            />
+          </div>
           <div
             style={{ marginLeft: isOpen ? "100px" : "0px" }}
             className="bars"

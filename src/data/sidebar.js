@@ -1,54 +1,35 @@
-import {
-  FaTh,
-  FaRegChartBar,
-  FaCommentAlt,
-  FaShoppingBag,
-  FaThList,
-} from "react-icons/fa";
+import { FaTh, FaRegChartBar, FaCommentAlt } from "react-icons/fa";
+import { BiImageAdd } from "react-icons/bi";
 
 const menu = [
   {
     title: "Dashboard",
     icon: <FaTh />,
-    childrens: [
-      {
-        title: "Home",
-        path: "/",
-      },
-      {
-        title: "About",
-        path: "/about",
-      },
-    ],
+    path: "/dashboard",
+  },
+  {
+    title: "Add Product",
+    icon: <BiImageAdd />,
+    path: "/add-product",
   },
   {
     title: "Account",
     icon: <FaRegChartBar />,
     childrens: [
       {
-        title: "Login",
-        path: "/login",
+        title: "Profile",
+        path: "/profile",
       },
       {
-        title: "Register",
-        path: "/register",
+        title: "Edit Profile",
+        path: "/profile-update",
       },
     ],
   },
   {
-    title: "Profile",
-    icon: <FaShoppingBag />,
-    path: "/account",
-  },
-  {
-    title: "Blog",
-    icon: <FaThList />,
-    path: "/blog",
-  },
-  {
     title: "Report Bug",
     icon: <FaCommentAlt />,
-    path: "/report-bug",
+    path: "/contact-us",
   },
 ];
 

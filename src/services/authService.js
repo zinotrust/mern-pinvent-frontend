@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 import axios from "axios";
 import { toast } from "react-toastify";
 import { SERVER_URL } from "../App";
@@ -31,13 +32,25 @@ export const registerUser = async (userData) => {
 // Login User
 export const loginUser = async (userData) => {
   try {
-    const { data } = await axios.post(
+    const response = await axios.post(
       `${SERVER_URL}/api/users/login`,
-      userData,
-      { withCredentials: true }
+      userData
     );
-    console.log(data);
     toast.success("Login Successful...");
+    return response.data;
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    toast.error(message);
+  }
+};
+
+// Logout User
+export const logoutUser = async (userData) => {
+  try {
+    await axios.get(`${SERVER_URL}/api/users/logout`);
   } catch (error) {
     const message =
       (error.response && error.response.data && error.response.data.message) ||
@@ -70,11 +83,11 @@ export const forgotPassword = async (email) => {
 // Reset Password
 export const resetPassword = async (password, resetToken) => {
   try {
-    const response = await axios.put(
+    await axios.put(
       `${SERVER_URL}/api/users/resetpassword/${resetToken}`,
       password
     );
-    console.log(response);
+    // console.log(response);
     toast.success("Password Reset Successful...");
   } catch (error) {
     console.log(error);
@@ -83,6 +96,48 @@ export const resetPassword = async (password, resetToken) => {
       error.message ||
       error.toString();
 
+    toast.error(message);
+  }
+};
+
+export const getLoginStatus = async () => {
+  try {
+    const response = await axios.get(`${SERVER_URL}/api/users/loggedin`);
+    return response.data;
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    console.log(message);
+  }
+};
+
+export const getUser = async () => {
+  try {
+    const response = await axios.get(`${SERVER_URL}/api/users/getuser`);
+    return response.data;
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    console.log(message);
+  }
+};
+
+export const changePassword = async (pass) => {
+  try {
+    const response = await axios.patch(
+      `${SERVER_URL}/api/users/changepassword`,
+      pass
+    );
+    return response.data;
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
     toast.error(message);
   }
 };

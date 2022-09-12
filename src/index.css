@@ -40,7 +40,7 @@ body {
 
 section {
   width: 100%;
-  padding: 8rem 0;
+  padding: 4rem 0;
 }
 
 .container {
@@ -53,6 +53,10 @@ section {
   max-width: 100%;
   margin: 0 auto;
   padding: 0 20px;
+}
+
+.header {
+  padding-top: 2rem;
 }
 
 /* UTILITY CLASSES */
@@ -202,6 +206,9 @@ p {
 .--color-white {
   color: #fff;
 }
+.--color-dark {
+  color: #333;
+}
 
 /* Center Text */
 .--text-center {
@@ -229,6 +236,9 @@ p {
 
 .--mb {
   margin-bottom: 1rem;
+}
+.--mt {
+  margin-top: 1rem;
 }
 
 .--my {
@@ -359,6 +369,15 @@ p {
   border: 1px solid #777;
   border-radius: 3px;
   outline: none;
+  display: block;
+}
+.--form-control textarea {
+  font-size: 1.6rem;
+  font-weight: 300;
+  padding: 8px 1rem;
+  border: 1px solid #777;
+  border-radius: 3px;
+  outline: none;
 }
 .--form-control select {
   font-size: 1.4rem;
@@ -444,4 +463,36 @@ ul {
 a:hover {
   /* color: var(--color-dark); */
   font-size: 1.5rem;
+}
+
+.ql-editor {
+  min-height: 200px;
+}
+
+.pagination {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+  font-size: 1rem;
+}
+
+.pagination .page-num {
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 3px;
+  font-weight: normal;
+  color: #333;
+  border: 1px solid #333;
+  margin: 2px;
+}
+
+.pagination .page-num:hover {
+  color: #fff;
+  background-color: var(--light-blue);
+}
+.pagination .active {
+  color: #fff;
+  background-color: var(--light-blue);
 }

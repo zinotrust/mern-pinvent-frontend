@@ -2,7 +2,7 @@ import { useState } from "react";
 import styles from "./auth.module.scss";
 import { TiUserAddOutline } from "react-icons/ti";
 import Card from "../../components/card/Card";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { registerUser, validateEmail } from "../../services/authService";
 
@@ -14,6 +14,7 @@ const initialState = {
 };
 
 const Register = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState(initialState);
   const { name, email, password, password2 } = formData;
 
@@ -47,6 +48,7 @@ const Register = () => {
     setFormData({
       ...initialState,
     });
+    navigate("/dashboard");
   };
 
   return (
