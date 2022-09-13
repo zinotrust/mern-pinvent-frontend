@@ -44,16 +44,22 @@ const Login = () => {
       password,
     };
     // console.log(userData);
-    const data = await loginUser(userData);
-    // console.log(data);
-    setFormData({
-      ...initialState,
-    });
-    dispatch(SET_LOGIN(true));
-    dispatch(SET_NAME(data.name));
-    navigate("/dashboard");
-    setIsLoading(false);
+    try {
+      const data = await loginUser(userData);
+      // console.log(data);
+      setFormData({
+        ...initialState,
+      });
+      dispatch(SET_LOGIN(true));
+      dispatch(SET_NAME(data.name));
+      navigate("/dashboard");
+      setIsLoading(false);
+    } catch (error) {
+      setIsLoading(false);
+      console.log(error.message);
+    }
   };
+
   return (
     <section className={`container ${styles.auth}`}>
       {isLoading && <Loader />}

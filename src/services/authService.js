@@ -34,9 +34,13 @@ export const loginUser = async (userData) => {
   try {
     const response = await axios.post(
       `${SERVER_URL}/api/users/login`,
-      userData
+      userData,
+      { withCredentials: true }
     );
-    toast.success("Login Successful...");
+    console.log(response);
+    if (response.statusText === "OK") {
+      toast.success("Login Successful...");
+    }
     return response.data;
   } catch (error) {
     const message =

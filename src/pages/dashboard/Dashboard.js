@@ -16,12 +16,12 @@ const Dashboard = () => {
   );
 
   useEffect(() => {
-    if (isError) {
-      console.log(message);
-    }
-
     if (isLoggedIn === true) {
       dispatch(getProducts());
+    }
+
+    if (isError) {
+      console.log(message);
     }
 
     // return () => {
