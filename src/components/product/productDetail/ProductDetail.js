@@ -1,10 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getProduct,
-  RESET,
-} from "../../../redux/features/product/productSlice";
+import { getProduct } from "../../../redux/features/product/productSlice";
 import { selectIsLoggedIn } from "../../../redux/features/auth/authSlice";
 import "./ProductDetail.scss";
 import Card from "../../card/Card";
@@ -42,9 +39,9 @@ const ProductDetail = () => {
 
     dispatch(getProduct(id));
 
-    return () => {
-      dispatch(RESET());
-    };
+    // return () => {
+    //   dispatch(RESET());
+    // };
   }, [id, isLoggedIn, navigate, isError, message, dispatch]);
   return (
     <div className="product-detail">

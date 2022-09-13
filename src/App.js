@@ -31,10 +31,8 @@ function App() {
 
   // Check if user is logged in
   useEffect(() => {
-    // console.log("Login status ran");
     async function loginStatus() {
       const status = await getLoginStatus();
-      // console.log(status);
       dispatch(SET_LOGIN(status));
     }
     loginStatus();
