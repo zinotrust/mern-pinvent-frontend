@@ -7,7 +7,7 @@ import ProductSummary from "../../components/product/productSummary/ProductSumma
 import useRedirectLoggedOutUser from "../../customHook/useRedirectLoggedOutUser";
 
 const Dashboard = () => {
-  // useRedirectLoggedOutUser("/login");
+  useRedirectLoggedOutUser("/login");
   const dispatch = useDispatch();
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -23,10 +23,6 @@ const Dashboard = () => {
     if (isError) {
       console.log(message);
     }
-
-    // return () => {
-    //   dispatch(RESET());
-    // };
   }, [isLoggedIn, isError, message, dispatch]);
 
   return (
