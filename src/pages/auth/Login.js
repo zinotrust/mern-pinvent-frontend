@@ -47,9 +47,6 @@ const Login = () => {
     try {
       const data = await loginUser(userData);
       // console.log(data);
-      setFormData({
-        ...initialState,
-      });
       dispatch(SET_LOGIN(true));
       dispatch(SET_NAME(data.name));
       navigate("/dashboard");

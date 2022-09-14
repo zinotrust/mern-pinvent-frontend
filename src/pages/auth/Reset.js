@@ -1,5 +1,5 @@
 import styles from "./auth.module.scss";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Card from "../../components/card/Card";
 import { MdPassword } from "react-icons/md";
 import { toast } from "react-toastify";
@@ -11,6 +11,7 @@ const initialState = {
   password2: "",
 };
 const Reset = () => {
+  const navigate = useNavigate();
   const { resetToken } = useParams();
   const [formData, setFormData] = useState(initialState);
   const { password, password2 } = formData;
@@ -33,10 +34,14 @@ const Reset = () => {
     };
     // console.log(resetToken);
     // console.log(userData);
-    await resetPassword(userData, resetToken);
-    setFormData({
-      ...initialState,
-    });
+    try {
+      const data = await resetPassword(userData, resetToken);
+      toast.success(data.message);
+      navigate("/login");
+    } catch (error) {
+      toast.error(error.message);
+      console.log(error.message);
+    }
   };
 
   return (
