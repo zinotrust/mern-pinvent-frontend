@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ProductForm from "../addProduct/ProductForm";
 import {
   getProduct,
+  getProducts,
   selectIsLoading,
   selectProduct,
   updateProduct,
@@ -64,7 +65,8 @@ const EditProduct = () => {
     if (productImage) {
       formData.append("image", productImage);
     }
-    dispatch(updateProduct({ id, formData }));
+    await dispatch(updateProduct({ id, formData }));
+    await dispatch(getProducts());
     navigate("/dashboard");
   };
 
