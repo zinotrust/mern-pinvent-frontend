@@ -5,6 +5,7 @@ import Loader from "../../components/Loader/Loader";
 import useRedirectLoggedOutUser from "../../customHook/useRedirectLoggedOutUser";
 import {
   createProduct,
+  getProducts,
   selectIsLoading,
 } from "../../redux/features/product/productSlice";
 import "./AddProduct.scss";
@@ -59,7 +60,8 @@ const AddProduct = () => {
     formData.append("description", description);
     formData.append("image", productImage);
 
-    dispatch(createProduct(formData));
+    await dispatch(createProduct(formData));
+    await dispatch(getProducts());
     navigate("/dashboard");
   };
 
