@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Profile.scss";
 import Card from "../../components/card/Card";
 import { useDispatch } from "react-redux";
-import { SAVE_USER } from "../../redux/features/auth/authSlice";
+import { SAVE_USER, SET_NAME } from "../../redux/features/auth/authSlice";
 import useRedirectLoggedOutUser from "../../customHook/useRedirectLoggedOutUser";
 import { Link } from "react-router-dom";
 import { getUser } from "../../services/authService";
@@ -23,6 +23,7 @@ const Profile = () => {
       setProfile(data);
       setIsLoading(false);
       dispatch(SAVE_USER(data));
+      dispatch(SET_NAME(data.name));
     }
     getUserData();
   }, [dispatch]);
