@@ -29,7 +29,7 @@ const Login = () => {
 
   const login = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
+
     // Validation
     if (!email || !password) {
       return toast.error("All fields are required");
@@ -44,6 +44,7 @@ const Login = () => {
       password,
     };
     // console.log(userData);
+    setIsLoading(true);
     try {
       const data = await loginUser(userData);
       // console.log(data);

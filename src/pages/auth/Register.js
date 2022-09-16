@@ -30,7 +30,7 @@ const Register = () => {
 
   const register = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
+
     // Validation
     if (!name || !email || !password) {
       return toast.error("All fields are required");
@@ -50,6 +50,7 @@ const Register = () => {
       password,
     };
     console.log(userData);
+    setIsLoading(true);
     try {
       const data = await registerUser(userData);
       // console.log(data);
