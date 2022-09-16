@@ -38,26 +38,22 @@ const ProductDetail = () => {
     }
 
     dispatch(getProduct(id));
-
-    // return () => {
-    //   dispatch(RESET());
-    // };
   }, [id, isLoggedIn, navigate, isError, message, dispatch]);
   return (
     <div className="product-detail">
       <h3 className="--mt">Product Detail</h3>
-      <Card cardClass={"card"}>
+      <Card cardClass="card">
         {/* Loading Spinner */}
         {isLoading && <SpinnerImg />}
         {product && (
           <div className="detail">
             <Card cardClass={"group"}>
-              {product.image ? (
+              {product?.image ? (
                 <img
-                  src={`${SERVER_URL}/${product.image.filePath}`}
+                  src={`${product.image.filePath}`}
                   height="250"
                   width={"100%"}
-                  alt="product"
+                  alt={`${product.image.fileName}`}
                 />
               ) : (
                 <p>No image set for this product</p>

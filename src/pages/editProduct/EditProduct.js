@@ -32,9 +32,7 @@ const EditProduct = () => {
     setProduct(productEdit);
     console.log(productEdit);
     setImagePreview(
-      productEdit && productEdit.image
-        ? `${SERVER_URL}/${productEdit.image.filePath}`
-        : null
+      productEdit && productEdit.image ? `${productEdit.image.filePath}` : null
     );
     setDescription(
       productEdit && productEdit.description ? productEdit.description : ""
