@@ -13,13 +13,15 @@ export const validateEmail = (email) => {
 // Register User
 export const registerUser = async (userData) => {
   try {
-    const { data } = await axios.post(
+    const response = await axios.post(
       `${SERVER_URL}/api/users/register`,
       userData,
       { withCredentials: true }
     );
-    console.log(data);
-    toast.success("Registered Successfully...");
+    if (response.statusText === "OK") {
+      toast.success("Registered Successfully...");
+    }
+    return response.data;
   } catch (error) {
     const message =
       (error.response && error.response.data && error.response.data.message) ||
