@@ -58,7 +58,7 @@ const ProfileUpdate = () => {
         // Upload the image
         const image = new FormData();
         image.append("file", profileImage);
-        image.append("upload_preset", "pvpv4gnl");
+        image.append("upload_preset", "mqxbycre");
         image.append("cloud_name", "zinotrust");
 
         // First, save the image to cloudinary
